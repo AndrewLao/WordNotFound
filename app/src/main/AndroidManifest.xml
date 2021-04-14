@@ -9,8 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WordNotFound">
+<<<<<<< HEAD
         <activity android:name=".Settings"></activity>
         <activity android:name=".LevelSelect" />
+=======
+        <activity android:name=".LevelSelect"></activity>
+>>>>>>> f40ea9b11c1b39089365fd4af36b12b902c6d903
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

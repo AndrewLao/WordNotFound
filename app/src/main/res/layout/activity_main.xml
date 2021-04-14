@@ -12,7 +12,10 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content">
        <ImageButton
+<<<<<<< HEAD
            android:id="@+id/main_title_setting"
+=======
+>>>>>>> f40ea9b11c1b39089365fd4af36b12b902c6d903
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_alignParentRight="true"
