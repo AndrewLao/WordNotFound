@@ -2,11 +2,13 @@ package com.cs151.wordnotfound;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +23,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.i("hello world", "hello world");
+            }
+        });
+
+        ImageButton settingButton = (ImageButton) findViewById(R.id.main_title_setting);
+        settingButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Settings.class));
             }
         });
 
