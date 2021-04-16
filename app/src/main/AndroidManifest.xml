@@ -9,12 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WordNotFound">
-
-        <activity android:name=".Settings"></activity>
-        <activity android:name=".LevelSelect" />
-
-        <activity android:name=".LevelSelect"></activity>
-
+        <activity android:name=".Result"></activity>
+        <activity android:name=".GravPlay" />
+        <activity android:name=".GravLevel" />
+        <activity android:name=".RegLevel" />
+        <activity android:name=".Settings" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

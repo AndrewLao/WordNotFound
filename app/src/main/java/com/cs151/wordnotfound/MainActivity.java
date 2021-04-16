@@ -19,12 +19,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button gravButton = (Button) findViewById(R.id.main_title_button1);
+        Button regButton = (Button) findViewById(R.id.mainRegularLevel);
+        regButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                startActivity(new Intent(MainActivity.this, RegLevel.class));
+            }
+        });
 
-        gravButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("hello world", "hello world");
+        Button gravButton = (Button) findViewById(R.id.mainGravLevel);
+        gravButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                startActivity(new Intent(MainActivity.this, GravLevel.class));
             }
         });
 

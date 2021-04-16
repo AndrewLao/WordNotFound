@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegLevel"
+    android:background="#adddff"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:id="@+id/regularHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/outline_home_24"
+            android:backgroundTint="#adddff">
+        </ImageButton>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/regularHome">
+            <TextView
+                android:id="@+id/regularLevelTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_centerHorizontal="true"
+                android:text="Select RegularLevel"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="40sp">
+            </TextView>
+        </RelativeLayout>
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <Button
+                    android:id="@+id/regSelect1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80sp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="50dp"
+                    android:textSize="20sp"
+                    android:text="Level 1" />
+
+                <Button
+                    android:id="@+id/regSelect2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80sp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/regSelect1"
+                    android:layout_marginTop="50dp"
+                    android:textSize="20sp"
+                    android:text="Level 2" />
+
+                <Button
+                    android:id="@+id/regSelect3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80sp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/regSelect2"
+                    android:layout_marginTop="50dp"
+                    android:textSize="20sp"
+                    android:text="Level 3" />
+
+                <Button
+                    android:id="@+id/regSelect4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80sp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/regSelect3"
+                    android:layout_marginTop="50dp"
+                    android:textSize="20sp"
+                    android:text="Level 4" />
+
+                <Button
+                    android:id="@+id/regSelect5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80sp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/regSelect4"
+                    android:layout_marginTop="50dp"
+                    android:textSize="20sp"
+                    android:text="Level 5" />
+            </RelativeLayout>
+    </ScrollView>
+</LinearLayout>

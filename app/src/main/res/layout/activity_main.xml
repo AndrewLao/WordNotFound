@@ -40,7 +40,7 @@
             android:textSize="40sp"></TextView>
 
         <Button
-            android:id="@+id/main_title_button1"
+            android:id="@+id/mainRegularLevel"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/main_title_title"
@@ -49,10 +49,10 @@
             android:text="Regular\n Wordsearch"></Button>
 
         <Button
-            android:id="@+id/main_title_button2"
+            android:id="@+id/mainGravLevel"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/main_title_button1"
+            android:layout_below="@+id/mainRegularLevel"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="100dp"
             android:text="Gravitational Wordsearch"></Button>
