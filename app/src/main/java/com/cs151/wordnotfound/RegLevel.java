@@ -22,5 +22,12 @@ public class RegLevel extends AppCompatActivity {
                 startActivity(new Intent(RegLevel.this, MainActivity.class));
             }
         });
+
+        Button regLevelOne = (Button) findViewById(R.id.regSelect1);
+        regLevelOne.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(RegLevel.this, RegPlay.class));
+            }
+        });
     }
 }
