@@ -4,12 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
     tools:context=".GravPlay"
     android:background="#adddff"
-=======
-    tools:context=".MainActivity"
->>>>>>> dc8a5263ac3f7f58e7048fa985b040fc51def24c
     android:orientation="vertical">
 
     <RelativeLayout
