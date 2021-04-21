@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#adddff"
     android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -36,21 +35,22 @@
             android:textSize="40sp"></TextView>
 
         <Switch
-            android:id="@+id/setting_switch1"
+            android:id="@+id/setting_dark"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/settings_title"
             android:text="Dark Theme"
             android:layout_centerHorizontal="true"
+            android:checked="false"
             android:layout_marginTop="50dp"
             android:textSize="30sp"
             android:switchMinWidth="55dp"/>
 
         <Switch
-            android:id="@+id/setting_switch2"
+            android:id="@+id/setting_music"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/setting_switch1"
+            android:layout_below="@+id/setting_dark"
             android:text="Music"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
@@ -58,10 +58,10 @@
             android:switchMinWidth="55dp"/>
 
         <Switch
-            android:id="@+id/setting_switch3"
+            android:id="@+id/setting_sound"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/setting_switch2"
+            android:layout_below="@+id/setting_music"
             android:text="Sound"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
