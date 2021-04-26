@@ -25,9 +25,11 @@ public class Settings extends AppCompatActivity {
             }
         });
 
+        /*
+        //Dark theme stuff on maintenance
         Switch darkSwitch = (Switch) findViewById(R.id.setting_dark);
         sharedPreferences = getSharedPreferences("night", 0);
-        Boolean isNight = sharedPreferences.getBoolean("night_mode", true);
+        Boolean isNight = sharedPreferences.getBoolean("night_mode", false);
 
         if(isNight){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
@@ -52,6 +54,7 @@ public class Settings extends AppCompatActivity {
                 }
             }
         });
+        */
 
     }
 }
