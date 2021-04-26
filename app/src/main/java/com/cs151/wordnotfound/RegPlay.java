@@ -7,20 +7,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-public class GravPlay extends AppCompatActivity {
+public class RegPlay extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_grav_play);
+        setContentView(R.layout.activity_reg_play);
 
-        ImageButton gravPlayLevel = (ImageButton) findViewById(R.id.gravPlayToGravLevel);
-        gravPlayLevel.setOnClickListener(new View.OnClickListener() {
+        ImageButton regPlayLevel = (ImageButton) findViewById(R.id.regPlayToRegLevel);
+        regPlayLevel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(GravPlay.this, GravLevel.class));
+                startActivity(new Intent(RegPlay.this, RegLevel.class));
             }
         });
     }
-
-
 }

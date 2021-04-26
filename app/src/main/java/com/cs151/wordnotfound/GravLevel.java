@@ -22,5 +22,12 @@ public class GravLevel extends AppCompatActivity {
                 startActivity(new Intent(GravLevel.this, MainActivity.class));
             }
         });
+
+        Button gravLevelOne = (Button) findViewById(R.id.gravSelect1);
+        gravLevelOne.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(GravLevel.this, GravPlay.class));
+            }
+        });
     }
 }
