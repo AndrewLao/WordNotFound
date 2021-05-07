@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,30 +21,42 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button regButton = (Button) findViewById(R.id.mainRegularLevel);
-        regButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                startActivity(new Intent(MainActivity.this, RegLevel.class));
-            }
-        });
+        regButton.setOnClickListener(this);
 
         Button gravButton = (Button) findViewById(R.id.mainGravLevel);
-        gravButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                startActivity(new Intent(MainActivity.this, GravLevel.class));
-            }
-        });
-
+        gravButton.setOnClickListener(this);
 
         ImageButton settingButton = (ImageButton) findViewById(R.id.main_title_setting);
-        settingButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Settings.class));
-            }
-        });
+        settingButton.setOnClickListener(this);
 
 
     }
 
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case (R.id.mainRegularLevel):
+                openRegLevel();
+                break;
+            case (R.id.mainGravLevel):
+                openGravLevel();
+                break;
+            case (R.id.main_title_setting):
+                openSettings();
+                break;
+        }
+    }
 
+    private void openRegLevel(){
+        startActivity(new Intent(this, RegLevel.class));
+    }
+
+    private void openGravLevel(){
+        startActivity(new Intent(this, GravLevel.class));
+    }
+
+    private void openSettings(){
+        startActivity(new Intent(this, Settings.class));
+    }
 
 }
