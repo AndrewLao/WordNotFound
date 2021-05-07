@@ -39,16 +39,18 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
+
+
+        <GridView
             android:id="@+id/regGame"
             android:layout_width="match_parent"
-            android:layout_height="350dp"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="50dp"
-            android:text="play game here"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="48sp"></TextView>
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:numColumns="7"
+            android:horizontalSpacing="10dp"
+            android:verticalSpacing="10dp"
+            />
 
         <HorizontalScrollView
             android:id="@+id/regWordBankScrollContainer"

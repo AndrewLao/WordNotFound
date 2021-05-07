@@ -13,6 +13,7 @@
 
         <activity android:name=".Result" />
         <activity android:name=".GravPlay" />
+        <activity android:name=".RegPlay" />
         <activity android:name=".GravLevel" />
         <activity android:name=".RegLevel" />
         <activity android:name=".Settings" />
@@ -23,8 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
     </application>
 
 </manifest>
