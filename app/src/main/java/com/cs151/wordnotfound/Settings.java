@@ -48,17 +48,17 @@ public class Settings extends AppCompatActivity implements View.OnClickListener{
             @Override
             public void onClick(View v) {
                 if(darkSwitch.isChecked()){
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                     editor.putBoolean(SWITCH_STATUS, true);
                     editor.putBoolean(NIGHT, true);
                     darkSwitch.setChecked(true);
                     editor.apply();
-                    recreate();
                 }else{
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                     editor.putBoolean(SWITCH_STATUS, false);
                     editor.putBoolean(NIGHT, false);
                     darkSwitch.setChecked(false);
                     editor.apply();
-                    recreate();
                 }
             }
         });
