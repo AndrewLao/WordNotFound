@@ -15,6 +15,7 @@
         <activity android:name=".GravPlay" />
         <activity android:name=".GravLevel" />
         <activity android:name=".RegLevel" />
+        <activity android:name=".RegPlay"/>
         <activity android:name=".Settings" />
         <activity android:name=".MainActivity">
             <intent-filter>
