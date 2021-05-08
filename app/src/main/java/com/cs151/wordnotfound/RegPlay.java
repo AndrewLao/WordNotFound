@@ -22,6 +22,7 @@ public class RegPlay extends AppCompatActivity {
     GridView grid;
     ArrayList<Word> list = new ArrayList<Word>();
     boolean[] b = new boolean[49];
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,24 +79,6 @@ public class RegPlay extends AppCompatActivity {
                 return true;
             }
         });
-//        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                TextView a = view.findViewById(R.id.let);
-//                if(b[position] == true) {
-//                    a.setBackgroundColor(Color.parseColor("#ADDDFF"));
-//                    b[position] = false;
-//                }
-//                else {
-//                    ans += (a.getText());
-//                    a.setBackgroundColor(Color.parseColor("#696969"));
-//                    b[position] = true;
-//                }
-//                System.out.println(ans);
-//                //Add some check to see if the position is already selected
-//
-//            }
-//        });
     }
 
 }
