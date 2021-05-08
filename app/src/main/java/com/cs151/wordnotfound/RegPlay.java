@@ -2,12 +2,14 @@ package com.cs151.wordnotfound;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -18,6 +20,8 @@ import java.util.List;
 public class RegPlay extends AppCompatActivity {
     String ans = "";
     GridView grid;
+    ArrayList<Word> list = new ArrayList<Word>();
+    boolean[] b = new boolean[49];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +35,6 @@ public class RegPlay extends AppCompatActivity {
         });
 
         grid = (GridView) findViewById(R.id.regGame);
-        ArrayList<Word> list = new ArrayList<Word>();
-        boolean[] b = new boolean[49];
         //Create grid of letters here
         for (int i = 0; i < 49; i++) {
             list.add(new Word(Integer.toString(i)));
@@ -41,27 +43,59 @@ public class RegPlay extends AppCompatActivity {
         //Grid adapter, add the list to the grid
         GridAdapter adapter = new GridAdapter(this, list);
         grid.setAdapter(adapter);
-
+        ArrayList<TextView> tmp = new ArrayList<TextView>();
         //Manage item clicks
-        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        grid.setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                TextView a = view.findViewById(R.id.let);
-                if(b[position] == true) {
-                    a.setBackgroundColor(Color.parseColor("#ADDDFF"));
-                    b[position] = false;
-                }
-                else {
-                    ans += (a.getText());
-                    a.setBackgroundColor(Color.parseColor("#696969"));
-                    b[position] = true;
-                }
-                System.out.println(ans);
-                //Add some check to see if the position is already selected
+            public boolean onTouch(View v, MotionEvent event) {
+                TextView a;
+                int action = event.getActionMasked();
+                float currentPosX = event.getX();
+                float currentPosY = event.getY();
+                int pos = grid.pointToPosition((int) currentPosX, (int) currentPosY);
 
+//                if(action == MotionEvent.ACTION_DOWN){
+//                    System.out.println(pos + "action down");
+//                }
+                if(action == MotionEvent.ACTION_MOVE){
+                    System.out.println(pos);
+                    if (pos != -1) {
+                        a = (TextView) grid.getChildAt(pos).findViewById(R.id.let);
+                        a.setBackgroundColor(Color.parseColor("#696969"));
+                        tmp.add(a);
+                    }
+                }
+
+                //Submit here
+                if(action == MotionEvent.ACTION_UP){
+                    System.out.println(pos+"up");
+                    for(TextView b: tmp) {
+                        b.setBackgroundColor(Color.parseColor("#ADDDFF"));
+                    }
+                }
+
+                return true;
             }
         });
-
+//        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                TextView a = view.findViewById(R.id.let);
+//                if(b[position] == true) {
+//                    a.setBackgroundColor(Color.parseColor("#ADDDFF"));
+//                    b[position] = false;
+//                }
+//                else {
+//                    ans += (a.getText());
+//                    a.setBackgroundColor(Color.parseColor("#696969"));
+//                    b[position] = true;
+//                }
+//                System.out.println(ans);
+//                //Add some check to see if the position is already selected
+//
+//            }
+//        });
     }
 
 }
