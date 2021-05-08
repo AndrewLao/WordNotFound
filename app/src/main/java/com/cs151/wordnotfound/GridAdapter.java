@@ -1,6 +1,7 @@
 package com.cs151.wordnotfound;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +13,8 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
 public class GridAdapter extends ArrayAdapter<Word> {
-    public GridAdapter(@NonNull Context context, ArrayList<Word> courseModelArrayList) {
-        super(context, 0, courseModelArrayList);
+    public GridAdapter(@NonNull Context context, ArrayList<Word> wordArrayList) {
+        super(context, 0, wordArrayList);
     }
 
     @NonNull
@@ -27,6 +28,11 @@ public class GridAdapter extends ArrayAdapter<Word> {
         Word lettor = getItem(position);
         TextView text = listitemView.findViewById(R.id.let);
         text.setText(lettor.getWord());
+        /*text.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                System.out.println(text.getText());
+            }
+        });*/
         return listitemView;
     }
 }
