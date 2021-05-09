@@ -42,6 +42,12 @@ public class RegPlay extends AppCompatActivity {
             }
         });
 
+        ImageButton regPlayRetry = (ImageButton) findViewById(R.id.regPlayToRetry);
+        regPlayRetry.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(RegPlay.this, RegPlay.class));
+            }
+        });
 
         grid = (GridView) findViewById(R.id.regGame);
         //Create grid of letters here
