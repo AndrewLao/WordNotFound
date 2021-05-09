@@ -30,12 +30,16 @@ public class RegPlay extends AppCompatActivity {
     int scoreSum = 0;
     ArrayList<TextView> bankTexts;
 
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reg_play);
-        
+
+        //This will be used to push score to result screen
+        Intent intent = new Intent(this, Result.class);
+
         ImageButton regPlayLevel = (ImageButton) findViewById(R.id.regPlayToRegLevel);
         regPlayLevel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -193,7 +197,12 @@ public class RegPlay extends AppCompatActivity {
 
                     //If all words in the word bank have been found, go to results screen
                     if (bank.getBank().size() == 0) {
-                        startActivity(new Intent(RegPlay.this, Result.class));
+                        //Bundle stuff passes the score onto the results screen
+                        Bundle bundle = new Bundle();
+                        bundle.putString("scoreSum", Integer.toString(scoreSum));
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+
                     }
 
                     //If the word is not found in wordbank, reset the color of the letters

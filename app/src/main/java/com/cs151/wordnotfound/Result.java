@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class Result extends AppCompatActivity {
 
@@ -14,6 +15,11 @@ public class Result extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+
+        Bundle bundle = getIntent().getExtras();
+        String score = bundle.getString("scoreSum");
+        TextView resultScore = findViewById(R.id.resultScoreText);
+        resultScore.setText(score);
 
         ImageButton settingsMain = (ImageButton) findViewById(R.id.results_main);
         settingsMain.setOnClickListener(new View.OnClickListener() {
