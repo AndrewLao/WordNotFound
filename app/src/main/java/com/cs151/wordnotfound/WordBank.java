@@ -1,18 +1,19 @@
 package com.cs151.wordnotfound;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.io.IOException;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.*;
 
-public class WordBank {
+public class WordBank extends AppCompatActivity{
     private ArrayList<Word> bank;
     private int level;
     private String format;
 
     private String levelFile;
     private boolean levelSelect;//FALSE FOR REG, TRUE FOR LEVEL
-    private File f;
-    private FileReader fr;
-    private BufferedReader br;
     private ArrayList<WordBank> wordBankList;
 
     public WordBank(int level, ArrayList<Word> bank, String format) {
@@ -21,63 +22,72 @@ public class WordBank {
         this.format = format;
     }
 
-
-    public WordBank(boolean levelSelect){
-        this.levelSelect = levelSelect;
+    public WordBank(InputStream is, BufferedReader br){
         wordBankList = new ArrayList<>();
-
-        if(levelSelect) {
-            levelFile = "src/gravLevelSelect.txt";
-        }else{
-            levelFile = "src/regLevelSelect.txt";
-        }
+        is = this.getResources().openRawResource(R.raw.level_select);
+        br = new BufferedReader(new InputStreamReader(is));
+//        if(levelSelect) {
+//            levelFile = "src/gravLevelSelect.txt";
+//        }else{
+//            levelFile = "C:\\Users\\andre\\AndroidStudioProjects\\WordNotFound\\app\\src\\level_select.txt";
+//        }
         try {
+//            f = new File(levelFile);
+//            System.out.println(f.exists());
+//            fr = new FileReader(f);
+//            br = new BufferedReader(fr);
 
-            f = new File(levelFile);
-            fr = new FileReader(f);
-            br = new BufferedReader(fr);
-
-            boolean endOfFile = true;
-
-            while (endOfFile) {
-                /*
-                line 1 = level
-                line 2 = word1, word2, word3
-                line 3 = format of grid
-                 */
-
-                String str = br.readLine();				//level in line 1
-
-
-                if(str == null) {						//checks if line read is null, break;
-                    endOfFile = false;
-                    break;
+            String s = "";
+            if(is != null){
+                while((s = br.readLine()) != null){
+                    System.out.println(s);
                 }
-
-                level = Integer.parseInt(str);          //reads level of word in line 1
-
-                bank = new ArrayList<Word>();               //new arraylist
-                str = br.readLine();					//line 2
-                String[] comma = str.split(", ");       //splits line 2
-
-                for(String k: comma) {                  //fills up the bank in our Wordbank object
-                    Word word = new Word(k);
-                    bank.add(word);
-
-                }
-                str = br.readLine();
-                format = str;					//line 3
-
-                System.out.println(toString());
-
-                wordBankList.add(new WordBank(level, bank, format));
+            }else{
+                System.out.println("NULL");
             }
+
+//            boolean endOfFile = true;
+//
+//            while (endOfFile) {
+//                /*
+//                line 1 = level
+//                line 2 = word1, word2, word3
+//                line 3 = format of grid
+//                 */
+//
+//
+//                String str = br.readLine();				//level in line 1
+//
+//
+//                if(str == null) {						//checks if line read is null, break;
+//                    endOfFile = false;
+//                    break;
+//                }
+//
+//                level = Integer.parseInt(str);          //reads level of word in line 1
+//
+//                bank = new ArrayList<Word>();               //new arraylist
+//                str = br.readLine();					//line 2
+//                String[] comma = str.split(", ");       //splits line 2
+//
+//                for(String k: comma) {                  //fills up the bank in our Wordbank object
+//                    Word word = new Word(k);
+//                    bank.add(word);
+//                }
+//
+//                str = br.readLine();
+//                format = str;					//line 3
+//
+//                System.out.println(toString());
+//
+//                wordBankList.add(new WordBank(level, bank, format));
+//            }
 
             //close readers
             br.close();
-            fr.close();
+            is.close();
 
-        }catch(IOException e){
+        }catch(Exception e){
             System.out.println(e.getMessage());
         }
     }
