@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class RegPlay extends AppCompatActivity {
     String ans = "";
     GridView grid;
-    ArrayList<Word> list = new ArrayList<Word>();
+    ArrayList<String> list = new ArrayList<String>();
     boolean directionChecked = false;
     boolean directionChecked2 = false;
     boolean[] b = new boolean[49];
@@ -35,7 +35,7 @@ public class RegPlay extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reg_play);
-
+        
         ImageButton regPlayLevel = (ImageButton) findViewById(R.id.regPlayToRegLevel);
         regPlayLevel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -53,12 +53,14 @@ public class RegPlay extends AppCompatActivity {
         grid = (GridView) findViewById(R.id.regGame);
         //Create grid of letters here
         wordList = new ArrayList<Word>();
+        //For now, manually add words
         wordList.add(new Word("cloud"));
         wordList.add(new Word("example"));
         wordList.add(new Word("test"));
         wordList.add(new Word("mercy"));
         String str = "mhtesteeeeybjlrswldtpcraupumymoiqeabllxhfxcrwpgne";
         bank = new WordBank(1, wordList, str);
+        //Manually set the wordbank textviews and add them to bankTexts
         TextView test1 = (TextView) findViewById(R.id.test1);
         TextView test2 = (TextView) findViewById(R.id.test2);
         TextView test3 = (TextView) findViewById(R.id.test3);
@@ -73,9 +75,10 @@ public class RegPlay extends AppCompatActivity {
         bankTexts.add(test3);
         bankTexts.add(test4);
 
+        //Add all of the letters in str to the grid
         for (int i = 0; i < str.length(); i++)
         {
-            list.add(new Word(str.substring(i,i+1)));
+            list.add(str.substring(i,i+1));
         }
 
         //Grid adapter, add the list to the grid
@@ -105,7 +108,7 @@ public class RegPlay extends AppCompatActivity {
                                 ans += a.getText();
                             }
                         }
-                       //Every other grid
+                       //Second grid selected
                        else if (!directionChecked2 && pos != startingPos) {
                            direction = pos - startingPos;
                            nextPos = pos;
@@ -148,6 +151,7 @@ public class RegPlay extends AppCompatActivity {
                                directionChecked2 = false;
                            }
                        }
+                       //Every other grid selected
                        else if (nextPos + direction == pos) {
                            nextPos += direction;
                            a = (TextView) grid.getChildAt(pos).findViewById(R.id.let);
@@ -159,21 +163,20 @@ public class RegPlay extends AppCompatActivity {
                        }
                    }
                }
-                //Submit here
+                //This submits the currently highlighted letters for verification
                 if(action == MotionEvent.ACTION_UP){
                     boolean found = false;
 
-                    //Check if the word exists in the wordbank
+                    //Check if the word exists in the wordbank. If so, highlight the letters yellow.
                     for (Word word: bank.getBank()) {
                         if (ans.equals(word.getWord())) {
                             for(TextView b: letterViewHolder) {
                                 foundLetterViewHolder.add(b);
                                 b.setBackgroundColor(Color.parseColor("#FFFF00"));
                             }
+                            //Remove the word from the bank of words and sum up the score
                             bank.getBank().remove(word);
                             scoreSum += word.getWordScore().getScore();
-
-                            //Sums up the score
                             TextView scoreText = findViewById(R.id.regPlayScoreText);
                             scoreText.setText("Score: " + Integer.toString(scoreSum));
 
@@ -183,24 +186,26 @@ public class RegPlay extends AppCompatActivity {
                                     w.setPaintFlags(w.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                                 }
                             }
-
                             found = true;
                             break;
                         }
                     }
+
+                    //If all words in the word bank have been found, go to results screen
                     if (bank.getBank().size() == 0) {
                         startActivity(new Intent(RegPlay.this, Result.class));
                     }
-                    //Reset the letters on the grid
+
+                    //If the word is not found in wordbank, reset the color of the letters
                     if (!found) {
                         for(TextView b: letterViewHolder) {
                             if (!foundLetterViewHolder.contains(b))
                             b.setBackgroundColor(Color.parseColor("#ADDDFF"));
-                            else {
-                                b.setBackgroundColor(Color.parseColor("#FFFF00"));
-                            }
+                            //Keeps found words highlighted
+                            else {b.setBackgroundColor(Color.parseColor("#FFFF00"));}
                         }
                     }
+                    //Reset the letter holder, answer string, and directionChecked variables
                     letterViewHolder.clear();
                     ans = "";
                     directionChecked = false;
