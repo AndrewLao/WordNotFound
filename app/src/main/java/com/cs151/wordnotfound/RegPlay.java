@@ -21,7 +21,12 @@ public class RegPlay extends AppCompatActivity {
     String ans = "";
     GridView grid;
     ArrayList<Word> list = new ArrayList<Word>();
+    boolean directionChecked = false;
+    boolean directionChecked2 = false;
     boolean[] b = new boolean[49];
+    ArrayList<TextView> tmp = new ArrayList<TextView>();
+    int startingPos, trackPos, trackPos2;
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,19 +40,23 @@ public class RegPlay extends AppCompatActivity {
             }
         });
 
+
         grid = (GridView) findViewById(R.id.regGame);
         //Create grid of letters here
-        for (int i = 0; i < 49; i++) {
+//        WordBank bank = new WordBank(false).getLevel(1);
+//        String str = bank.getFormat();
+//        System.out.println(bank.toString());
+        for (int i = 0; i < 49; i++)
+        {
             list.add(new Word(Integer.toString(i)));
         }
 
         //Grid adapter, add the list to the grid
         GridAdapter adapter = new GridAdapter(this, list);
         grid.setAdapter(adapter);
-        ArrayList<TextView> tmp = new ArrayList<TextView>();
+
         //Manage item clicks
         grid.setOnTouchListener(new View.OnTouchListener() {
-            @SuppressLint("ClickableViewAccessibility")
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 TextView a;
@@ -56,26 +65,76 @@ public class RegPlay extends AppCompatActivity {
                 float currentPosY = event.getY();
                 int pos = grid.pointToPosition((int) currentPosX, (int) currentPosY);
 
-//                if(action == MotionEvent.ACTION_DOWN){
+//               if(action == MotionEvent.ACTION_DOWN){
 //                    System.out.println(pos + "action down");
-//                }
-                if(action == MotionEvent.ACTION_MOVE){
-                    System.out.println(pos);
-                    if (pos != -1) {
-                        a = (TextView) grid.getChildAt(pos).findViewById(R.id.let);
-                        a.setBackgroundColor(Color.parseColor("#696969"));
-                        tmp.add(a);
-                    }
-                }
-
+//                   if (pos != -1) {
+//                       startingPos = pos;
+//                       a = (TextView) grid.getChildAt(pos).findViewById(R.id.let);
+//                       if (!tmp.contains(a)) {
+//                           a.setBackgroundColor(Color.parseColor("#696969"));
+//                           tmp.add(a);
+//                           ans += a.getText();
+//                       }
+//                   }
+//               }
+               if(action == MotionEvent.ACTION_MOVE){
+                   if (pos != -1) {
+                       //First grid selected
+                       if (!directionChecked) {
+                            startingPos = pos;
+                            directionChecked = true;
+                            System.out.print("startingPos: " + startingPos);
+                            System.out.println("pos: " + pos);
+                            a = (TextView) grid.getChildAt(pos).findViewById(R.id.let);
+                            if (!tmp.contains(a)) {
+                                a.setBackgroundColor(Color.parseColor("#696969"));
+                                tmp.add(a);
+                                ans += a.getText();
+                                System.out.println(ans);
+                            }
+                        }
+                       //Every other grid
+                       else if (!directionChecked2 && pos != startingPos) {
+                           trackPos = pos - startingPos;
+                           trackPos2 = pos;
+                           directionChecked2 = true;
+                           System.out.print("startingPos: " + startingPos);
+                           System.out.println("pos: " + pos);
+                           System.out.println("trackPos: " + trackPos);
+                            a = (TextView) grid.getChildAt(pos).findViewById(R.id.let);
+                            if (!tmp.contains(a)) {
+                                a.setBackgroundColor(Color.parseColor("#696969"));
+                                tmp.add(a);
+                                ans += a.getText();
+                                System.out.println(ans);
+                            }
+                       }
+                       else if (trackPos2 + trackPos == pos) {
+                           trackPos2 += trackPos;
+                           a = (TextView) grid.getChildAt(pos).findViewById(R.id.let);
+                           System.out.print("startingPos: " + startingPos);
+                           System.out.println("pos: " + pos);
+                           System.out.println("trackPos: " + trackPos);
+                           if (!tmp.contains(a)) {
+                               a.setBackgroundColor(Color.parseColor("#696969"));
+                               tmp.add(a);
+                               ans += a.getText();
+                               System.out.println(ans);
+                           }
+                       }
+                   }
+               }
                 //Submit here
                 if(action == MotionEvent.ACTION_UP){
-                    System.out.println(pos+"up");
+                    //Check if the word exists in the wordbank
                     for(TextView b: tmp) {
                         b.setBackgroundColor(Color.parseColor("#ADDDFF"));
                     }
+                    tmp.clear();
+                    ans = "";
+                    directionChecked = false;
+                    directionChecked2 = false;
                 }
-
                 return true;
             }
         });

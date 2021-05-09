@@ -88,7 +88,7 @@ public class WordBank {
      * @return Wordbank obj
      */
     public WordBank getLevel(int pLevel) {
-        return wordBankList.get(pLevel + 1);
+        return wordBankList.get(pLevel);
     }
 
     /**
