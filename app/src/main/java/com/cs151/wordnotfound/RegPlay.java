@@ -22,7 +22,8 @@ public class RegPlay extends AppCompatActivity {
     boolean directionChecked = false;
     boolean directionChecked2 = false;
     boolean[] b = new boolean[49];
-    ArrayList<TextView> tmp = new ArrayList<TextView>();
+    ArrayList<TextView> letterViewHolder = new ArrayList<TextView>();
+    ArrayList<TextView> foundLetterViewHolder = new ArrayList<TextView>();
     int startingPos, direction, nextPos;
     WordBank bank;
     ArrayList<Word> wordList;
@@ -98,9 +99,9 @@ public class RegPlay extends AppCompatActivity {
                             startingPos = pos;
                             directionChecked = true;
                             a = (TextView) grid.getChildAt(pos).findViewById(R.id.let);
-                            if (!tmp.contains(a)) {
+                            if (!letterViewHolder.contains(a)) {
                                 a.setBackgroundColor(Color.parseColor("#696969"));
-                                tmp.add(a);
+                                letterViewHolder.add(a);
                                 ans += a.getText();
                             }
                         }
@@ -137,9 +138,9 @@ public class RegPlay extends AppCompatActivity {
                            }
                            if(b) {
                                a = (TextView) grid.getChildAt(pos).findViewById(R.id.let);
-                               if (!tmp.contains(a)) {
+                               if (!letterViewHolder.contains(a)) {
                                    a.setBackgroundColor(Color.parseColor("#696969"));
-                                   tmp.add(a);
+                                   letterViewHolder.add(a);
                                    ans += a.getText();
                                    System.out.println(ans);
                                }
@@ -150,9 +151,9 @@ public class RegPlay extends AppCompatActivity {
                        else if (nextPos + direction == pos) {
                            nextPos += direction;
                            a = (TextView) grid.getChildAt(pos).findViewById(R.id.let);
-                           if (!tmp.contains(a)) {
+                           if (!letterViewHolder.contains(a)) {
                                a.setBackgroundColor(Color.parseColor("#696969"));
-                               tmp.add(a);
+                               letterViewHolder.add(a);
                                ans += a.getText();
                            }
                        }
@@ -165,7 +166,8 @@ public class RegPlay extends AppCompatActivity {
                     //Check if the word exists in the wordbank
                     for (Word word: bank.getBank()) {
                         if (ans.equals(word.getWord())) {
-                            for(TextView b: tmp) {
+                            for(TextView b: letterViewHolder) {
+                                foundLetterViewHolder.add(b);
                                 b.setBackgroundColor(Color.parseColor("#FFFF00"));
                             }
                             bank.getBank().remove(word);
@@ -191,11 +193,15 @@ public class RegPlay extends AppCompatActivity {
                     }
                     //Reset the letters on the grid
                     if (!found) {
-                        for(TextView b: tmp) {
+                        for(TextView b: letterViewHolder) {
+                            if (!foundLetterViewHolder.contains(b))
                             b.setBackgroundColor(Color.parseColor("#ADDDFF"));
+                            else {
+                                b.setBackgroundColor(Color.parseColor("#FFFF00"));
+                            }
                         }
                     }
-                    tmp.clear();
+                    letterViewHolder.clear();
                     ans = "";
                     directionChecked = false;
                     directionChecked2 = false;

@@ -15,6 +15,13 @@ public class Result extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
+        ImageButton settingsMain = (ImageButton) findViewById(R.id.results_main);
+        settingsMain.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(Result.this, MainActivity.class));
+            }
+        });
+
         Button retry = (Button) findViewById(R.id.resultRetryButton);
         retry.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
