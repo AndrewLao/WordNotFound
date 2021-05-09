@@ -1,13 +1,13 @@
 package com.cs151.wordnotfound;
 
 public class Score {
-    private double score;
+    private int score;
 
-    public void setScore(double score) {
+    public void setScore(int score) {
         this.score = score;
     }
 
-    public double getScore() {
+    public int getScore() {
         return score;
     }
 }

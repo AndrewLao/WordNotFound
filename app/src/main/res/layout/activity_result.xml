@@ -36,7 +36,7 @@
             android:textSize="48sp"></TextView>
 
         <TextView
-            android:id="@+id/scoreText"
+            android:id="@+id/resultScoreText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
