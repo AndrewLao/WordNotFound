@@ -180,6 +180,9 @@ public class RegPlay extends AppCompatActivity {
                             break;
                         }
                     }
+                    if (bank.getBank().size() == 0) {
+                        startActivity(new Intent(RegPlay.this, Result.class));
+                    }
                     //Reset the letters on the grid
                     if (!found) {
                         for(TextView b: tmp) {
