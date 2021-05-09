@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -26,6 +27,7 @@ public class RegPlay extends AppCompatActivity {
     WordBank bank;
     ArrayList<Word> wordList;
     int scoreSum = 0;
+    ArrayList<TextView> bankTexts;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -58,6 +60,11 @@ public class RegPlay extends AppCompatActivity {
         test2.setText(wordList.get(1).getWord());
         test3.setText(wordList.get(2).getWord());
         test4.setText(wordList.get(3).getWord());
+        bankTexts = new ArrayList<TextView>();
+        bankTexts.add(test1);
+        bankTexts.add(test2);
+        bankTexts.add(test3);
+        bankTexts.add(test4);
 
         for (int i = 0; i < str.length(); i++)
         {
@@ -161,6 +168,14 @@ public class RegPlay extends AppCompatActivity {
                             //Sums up the score
                             TextView scoreText = findViewById(R.id.regPlayScoreText);
                             scoreText.setText("Score: " + Integer.toString(scoreSum));
+
+                            //Cross out word from wordbank
+                            for(TextView w: bankTexts) {
+                                if (w.getText().equals(word.getWord())) {
+                                    w.setPaintFlags(w.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                                }
+                            }
+
                             found = true;
                             break;
                         }
