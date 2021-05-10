@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Chronometer;
@@ -38,6 +39,10 @@ public class RegPlay extends AppCompatActivity {
 
         //This will be used to push score to result screen
         Intent intent = new Intent(this, Result.class);
+        //Color chooser
+        TypedValue typedValue = new TypedValue();
+        getTheme().resolveAttribute(android.R.attr.colorBackground, typedValue, true);
+        int primaryTextColor = typedValue.data;
 
         //Start timer
         Chronometer simpleChronometer = (Chronometer) findViewById(R.id.simpleChronometer); // initiate a chronometer
@@ -257,6 +262,7 @@ public class RegPlay extends AppCompatActivity {
                             for(TextView b: letterViewHolder) {
                                 foundLetterViewHolder.add(b);
                                 b.setBackgroundColor(Color.parseColor("#FFFF00"));
+                                b.setTextColor(Color.parseColor("#000000"));
                             }
                             //Remove the word from the bank of words and sum up the score
                             bank.getBank().remove(word);
@@ -290,9 +296,12 @@ public class RegPlay extends AppCompatActivity {
                     if (!found) {
                         for(TextView b: letterViewHolder) {
                             if (!foundLetterViewHolder.contains(b))
-                            b.setBackgroundColor(Color.parseColor("#ADDDFF"));
+                            b.setBackgroundColor(primaryTextColor);
                             //Keeps found words highlighted
-                            else {b.setBackgroundColor(Color.parseColor("#FFFF00"));}
+                            else {
+                                b.setBackgroundColor(Color.parseColor("#FFFF00"));
+                                b.setTextColor(Color.parseColor("#000000"));
+                            }
                         }
                     }
                     //Reset the letter holder, answer string, and directionChecked variables
