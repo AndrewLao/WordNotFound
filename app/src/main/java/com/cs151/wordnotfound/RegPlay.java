@@ -101,7 +101,8 @@ public class RegPlay extends AppCompatActivity {
 
                if(action == MotionEvent.ACTION_MOVE){
                    if (pos != -1) {
-                       //First grid selected
+                       // First grid square selected
+                       // Initial position set
                        if (!directionChecked) {
                             startingPos = pos;
                             directionChecked = true;
@@ -112,7 +113,8 @@ public class RegPlay extends AppCompatActivity {
                                 ans += a.getText();
                             }
                         }
-                       //Second grid selected
+                       // For the second grid square selected
+                       // Made to get the direction the player's moving
                        else if (!directionChecked2 && pos != startingPos) {
                            direction = pos - startingPos;
                            nextPos = pos;
@@ -138,7 +140,6 @@ public class RegPlay extends AppCompatActivity {
                            if (d && l) cs.add(startingPos - 1 + cols); // bottom left
 
                            for(Integer i : cs){
-                               System.out.println(i.intValue());
                                if(i.intValue() == nextPos){
                                    b = true;
                                }
@@ -149,20 +150,47 @@ public class RegPlay extends AppCompatActivity {
                                    a.setBackgroundColor(Color.parseColor("#696969"));
                                    letterViewHolder.add(a);
                                    ans += a.getText();
-                                   System.out.println(ans);
                                }
                            }else{
                                directionChecked2 = false;
                            }
                        }
-                       //Every other grid selected
+                       // For ever other grid square selected
                        else if (nextPos + direction == pos) {
                            nextPos += direction;
-                           a = (TextView) grid.getChildAt(pos).findViewById(R.id.let);
-                           if (!letterViewHolder.contains(a)) {
-                               a.setBackgroundColor(Color.parseColor("#696969"));
-                               letterViewHolder.add(a);
-                               ans += a.getText();
+                           // pos at this stage of the program is equal to nextPos
+                           // if the direction is towards the right corner
+                           // checks must be done due to 1d array grid implementation
+                           if(direction == 8) {
+                               // if the previous position isn't on the right edge then proceed
+                               if((pos - 8) % 7 != 6) {
+                                   a = (TextView) grid.getChildAt(pos).findViewById(R.id.let);
+                                   if (!letterViewHolder.contains(a)) {
+                                       a.setBackgroundColor(Color.parseColor("#696969"));
+                                       letterViewHolder.add(a);
+                                       ans += a.getText();
+                                   }
+                               }else{
+                                   nextPos -= direction;  // reset the next position variable
+                               }
+                           }else if(direction == -8){  // same as before except with respect to the top left corner
+                               if((pos + 8) % 7 != 0) {
+                                   a = (TextView) grid.getChildAt(pos).findViewById(R.id.let);
+                                   if (!letterViewHolder.contains(a)) {
+                                       a.setBackgroundColor(Color.parseColor("#696969"));
+                                       letterViewHolder.add(a);
+                                       ans += a.getText();
+                                   }
+                               }else{
+                                   nextPos -= direction;
+                               }
+                           }else{
+                               a = (TextView) grid.getChildAt(pos).findViewById(R.id.let);
+                               if (!letterViewHolder.contains(a)) {
+                                   a.setBackgroundColor(Color.parseColor("#696969"));
+                                   letterViewHolder.add(a);
+                                   ans += a.getText();
+                               }
                            }
                        }
                    }

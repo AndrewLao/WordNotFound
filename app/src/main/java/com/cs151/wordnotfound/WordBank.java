@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 public class WordBank extends AppCompatActivity{
+    // unused class due to issues in regarding android
     private ArrayList<Word> bank;
     private int level;
     private String format;
@@ -29,7 +30,6 @@ public class WordBank extends AppCompatActivity{
 //        if(levelSelect) {
 //            levelFile = "src/gravLevelSelect.txt";
 //        }else{
-//            levelFile = "C:\\Users\\andre\\AndroidStudioProjects\\WordNotFound\\app\\src\\level_select.txt";
 //        }
         try {
 //            f = new File(levelFile);
