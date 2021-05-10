@@ -30,7 +30,6 @@
                 android:layout_centerHorizontal="true"
                 android:text="Select\nGravLevel"
                 android:textAlignment="center"
-                android:textColor="@color/black"
                 android:textSize="40sp">
             </TextView>
         </RelativeLayout>

@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:src="@drawable/outline_home_24"
-            android:backgroundTint="#adddff">
+            android:backgroundTint="?android:colorBackground">
         </ImageButton>
     </RelativeLayout>
 
@@ -32,7 +32,6 @@
             android:layout_marginTop="50dp"
             android:text="You Win!"
             android:textAlignment="center"
-            android:textColor="@color/black"
             android:textSize="48sp"></TextView>
 
         <TextView
@@ -44,7 +43,6 @@
             android:layout_below="@+id/resultText"
             android:text="Score: xxx"
             android:textAlignment="center"
-            android:textColor="@color/black"
             android:textSize="30sp"></TextView>
         <TextView
             android:id="@+id/timerText"
@@ -55,7 +53,6 @@
             android:layout_below="@+id/scoreText"
             android:text="Time: xxx"
             android:textAlignment="center"
-            android:textColor="@color/black"
             android:textSize="30sp"></TextView>
         <Button
             android:id="@+id/resultRetryButton"
