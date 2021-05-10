@@ -187,7 +187,7 @@ public class RegPlay extends AppCompatActivity {
                            }
                            else if(direction == 6) {
                                // if the previous position isn't on the right edge then proceed
-                               if((pos - 6) % 7 != 6) {
+                               if((pos - 6) % 7 != 0) {
                                    a = (TextView) grid.getChildAt(pos).findViewById(R.id.let);
                                    if (!letterViewHolder.contains(a)) {
                                        a.setBackgroundColor(Color.parseColor("#696969"));
@@ -198,7 +198,31 @@ public class RegPlay extends AppCompatActivity {
                                    nextPos -= direction;  // reset the next position variable
                                }
                            }else if(direction == -6){  // same as before except with respect to the top left corner
-                               if((pos + 6) % 7 != 0) {
+                               if((pos + 6) % 7 != 6) {
+                                   a = (TextView) grid.getChildAt(pos).findViewById(R.id.let);
+                                   if (!letterViewHolder.contains(a)) {
+                                       a.setBackgroundColor(Color.parseColor("#696969"));
+                                       letterViewHolder.add(a);
+                                       ans += a.getText();
+                                   }
+                               }else{
+                                   nextPos -= direction;
+                               }
+                           }
+                           else if(direction == 1) {
+                               // if the previous position isn't on the right edge then proceed
+                               if((pos - 1) % 7 != 6) {
+                                   a = (TextView) grid.getChildAt(pos).findViewById(R.id.let);
+                                   if (!letterViewHolder.contains(a)) {
+                                       a.setBackgroundColor(Color.parseColor("#696969"));
+                                       letterViewHolder.add(a);
+                                       ans += a.getText();
+                                   }
+                               }else{
+                                   nextPos -= direction;  // reset the next position variable
+                               }
+                           }else if(direction == -1){  // same as before except with respect to the top left corner
+                               if((pos + 1) % 7 != 0) {
                                    a = (TextView) grid.getChildAt(pos).findViewById(R.id.let);
                                    if (!letterViewHolder.contains(a)) {
                                        a.setBackgroundColor(Color.parseColor("#696969"));
