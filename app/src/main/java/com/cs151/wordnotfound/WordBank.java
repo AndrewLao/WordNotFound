@@ -8,7 +8,6 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 public class WordBank extends AppCompatActivity{
-    // unused class due to issues in regarding android
     private ArrayList<Word> bank;
     private int level;
     private String format;

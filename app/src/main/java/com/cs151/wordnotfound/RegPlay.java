@@ -16,20 +16,18 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class RegPlay extends AppCompatActivity {
-    String ans = "";
-    GridView grid;
+    ArrayList<TextView> foundLetterViewHolder = new ArrayList<TextView>();
+    ArrayList<TextView> letterViewHolder = new ArrayList<TextView>();
     ArrayList<String> list = new ArrayList<String>();
+    ArrayList<TextView> bankTexts;
+    ArrayList<Word> wordList;
     boolean directionChecked = false;
     boolean directionChecked2 = false;
-    boolean[] b = new boolean[49];
-    ArrayList<TextView> letterViewHolder = new ArrayList<TextView>();
-    ArrayList<TextView> foundLetterViewHolder = new ArrayList<TextView>();
     int startingPos, direction, nextPos;
-    WordBank bank;
-    ArrayList<Word> wordList;
     int scoreSum = 0;
-    ArrayList<TextView> bankTexts;
-
+    GridView grid;
+    WordBank bank;
+    String ans = "";
 
     @SuppressLint("ClickableViewAccessibility")
     @Override

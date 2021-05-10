@@ -19,7 +19,7 @@ public class Result extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         String score = bundle.getString("scoreSum");
         TextView resultScore = findViewById(R.id.resultScoreText);
-        resultScore.setText(score);
+        resultScore.setText("Score: " + score);
 
         ImageButton settingsMain = (ImageButton) findViewById(R.id.results_main);
         settingsMain.setOnClickListener(new View.OnClickListener() {
