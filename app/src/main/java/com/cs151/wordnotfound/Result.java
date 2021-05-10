@@ -17,6 +17,9 @@ public class Result extends AppCompatActivity {
         setContentView(R.layout.activity_result);
 
         Bundle bundle = getIntent().getExtras();
+        String playTime = bundle.getString("time");
+        TextView time = findViewById(R.id.resultTimerText);
+        time.setText("Time: " + playTime);
         String score = bundle.getString("scoreSum");
         TextView resultScore = findViewById(R.id.resultScoreText);
         resultScore.setText("Score: " + score);

@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Chronometer;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -37,6 +38,10 @@ public class RegPlay extends AppCompatActivity {
 
         //This will be used to push score to result screen
         Intent intent = new Intent(this, Result.class);
+
+        //Start timer
+        Chronometer simpleChronometer = (Chronometer) findViewById(R.id.simpleChronometer); // initiate a chronometer
+        simpleChronometer.start();
 
         ImageButton regPlayLevel = (ImageButton) findViewById(R.id.regPlayToRegLevel);
         regPlayLevel.setOnClickListener(new View.OnClickListener() {
@@ -275,6 +280,7 @@ public class RegPlay extends AppCompatActivity {
                         //Bundle stuff passes the score onto the results screen
                         Bundle bundle = new Bundle();
                         bundle.putString("scoreSum", Integer.toString(scoreSum));
+                        bundle.putString("time", simpleChronometer.getText().toString());
                         intent.putExtras(bundle);
                         startActivity(intent);
 
