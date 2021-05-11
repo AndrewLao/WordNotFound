@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".GravPlay"
-    android:background="#adddff"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -47,7 +46,6 @@
             android:layout_marginTop="50dp"
             android:text="play game here"
             android:textAlignment="center"
-            android:textColor="@color/black"
             android:textSize="48sp"></TextView>
 
         <HorizontalScrollView
@@ -55,7 +53,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/gravGame"
-            android:background="@color/purple_200"
             >
             <LinearLayout
                 android:layout_width="match_parent"

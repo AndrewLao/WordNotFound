@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegPlay"
-    android:background="#adddff"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -17,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:src="@drawable/outline_arrow_back_24"
-            android:backgroundTint="#adddff">
+            android:backgroundTint="?android:colorBackground">
         </ImageButton>
         <ImageButton
             android:id="@+id/regPlayToRetry"
@@ -25,16 +24,16 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:src="@drawable/outline_refresh_24"
-            android:backgroundTint="#adddff">
+            android:backgroundTint="?android:colorBackground">
         </ImageButton>
-        <TextView
+        <Chronometer
+            android:id="@+id/simpleChronometer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Time:HH:MM:SS"
             android:textStyle="bold"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:textSize="24sp"></TextView>
+            android:textSize="24sp"/>
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -57,7 +56,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/regGame"
-            android:background="@color/purple_200"
             >
             <LinearLayout
                 android:layout_width="match_parent"

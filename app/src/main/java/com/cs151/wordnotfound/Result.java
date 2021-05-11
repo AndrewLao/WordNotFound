@@ -17,9 +17,12 @@ public class Result extends AppCompatActivity {
         setContentView(R.layout.activity_result);
 
         Bundle bundle = getIntent().getExtras();
+        String playTime = bundle.getString("time");
+        TextView time = findViewById(R.id.resultTimerText);
+        time.setText("Time: " + playTime);
         String score = bundle.getString("scoreSum");
         TextView resultScore = findViewById(R.id.resultScoreText);
-        resultScore.setText(score);
+        resultScore.setText("Score: " + score);
 
         ImageButton settingsMain = (ImageButton) findViewById(R.id.results_main);
         settingsMain.setOnClickListener(new View.OnClickListener() {

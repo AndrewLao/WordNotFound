@@ -19,7 +19,7 @@
            android:layout_height="wrap_content"
            android:layout_alignParentRight="true"
            android:src="@drawable/ic_settings_black_80dp"
-           android:backgroundTint="#adddff">
+           android:backgroundTint="?android:colorBackground">
        </ImageButton>
    </RelativeLayout>
 
@@ -35,7 +35,6 @@
             android:layout_marginTop="100dp"
             android:text="WordNotFound"
             android:textAlignment="center"
-            android:textColor="@color/black"
             android:textSize="40sp"></TextView>
 
         <Button
