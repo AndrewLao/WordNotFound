@@ -39,8 +39,6 @@ public class RegPlay extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reg_play);
 
-        //This will be used to push score to result screen
-        Intent intent = new Intent(this, Result.class);
         //Color chooser
         TypedValue typedValue = new TypedValue();
         getTheme().resolveAttribute(android.R.attr.colorBackground, typedValue, true);
@@ -56,11 +54,20 @@ public class RegPlay extends AppCompatActivity {
                 startActivity(new Intent(RegPlay.this, RegLevel.class));
             }
         });
+        
+        //This will be used to push score to result screen
+        Intent intent = new Intent(this, Result.class);
+        Bundle bundle = getIntent().getExtras();
+        level = bundle.getInt("level");
 
+        Intent restart = new Intent(this, RegPlay.class);
         ImageButton regPlayRetry = (ImageButton) findViewById(R.id.regPlayToRetry);
         regPlayRetry.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(RegPlay.this, RegPlay.class));
+                Bundle bundle = new Bundle();
+                bundle.putInt("level", level);
+                restart.putExtras(bundle);
+                startActivity(restart);
             }
         });
 
@@ -75,8 +82,6 @@ public class RegPlay extends AppCompatActivity {
         }
 
         //Get the level of the game here
-        Bundle bundle = getIntent().getExtras();
-        level = bundle.getInt("level");
         bank = wordBankList.getLevel(level);
 
         //Create grid of letters here
