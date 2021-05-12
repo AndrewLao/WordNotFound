@@ -29,7 +29,6 @@ public class WordBank extends AppCompatActivity implements Serializable {
 
         try {
             BufferedReader is = b;
-            System.out.println(is.readLine());
             String s = "";
 
             boolean endOfFile = true;
@@ -64,7 +63,6 @@ public class WordBank extends AppCompatActivity implements Serializable {
                 str = is.readLine();
                 format = str;					//line 3
 
-                System.out.println(toString());
 
                 wordBankList.add(new WordBank(level, bank, format));
             }

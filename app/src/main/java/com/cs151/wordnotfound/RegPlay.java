@@ -15,20 +15,22 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class RegPlay extends AppCompatActivity {
     ArrayList<TextView> foundLetterViewHolder = new ArrayList<TextView>();
     ArrayList<TextView> letterViewHolder = new ArrayList<TextView>();
     ArrayList<String> list = new ArrayList<String>();
-    ArrayList<TextView> bankTexts;
-    ArrayList<Word> wordList;
+    ArrayList<String> bankList = new ArrayList<String>();
     boolean directionChecked = false;
     boolean directionChecked2 = false;
-    int startingPos, direction, nextPos;
+    int startingPos, direction, nextPos, level;
     int scoreSum = 0;
-    GridView grid;
-    WordBank bank;
+    GridView grid, bankGrid;
+    WordBank bank, wordBankList;
     String ans = "";
 
     @SuppressLint("ClickableViewAccessibility")
@@ -62,37 +64,40 @@ public class RegPlay extends AppCompatActivity {
             }
         });
 
-        grid = (GridView) findViewById(R.id.regGame);
+        //Create the wordbank here
+        try {
+            InputStream raw = getResources().openRawResource(R.raw.level_select);
+            BufferedReader is = new BufferedReader(new InputStreamReader(raw, "UTF8"));
+            wordBankList = new WordBank(is);
+            raw.close();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        //Get the level of the game here
+        Bundle bundle = getIntent().getExtras();
+        level = bundle.getInt("level");
+        bank = wordBankList.getLevel(level);
+
         //Create grid of letters here
-        wordList = new ArrayList<Word>();
-        //For now, manually add words
-        wordList.add(new Word("cloud"));
-        wordList.add(new Word("example"));
-        wordList.add(new Word("test"));
-        wordList.add(new Word("mercy"));
-        String str = "mhtesteeeeybjlrswldtpcraupumymoiqeabllxhfxcrwpgne";
-        bank = new WordBank(1, wordList, str);
-        //Manually set the wordbank textviews and add them to bankTexts
-        TextView test1 = (TextView) findViewById(R.id.test1);
-        TextView test2 = (TextView) findViewById(R.id.test2);
-        TextView test3 = (TextView) findViewById(R.id.test3);
-        TextView test4 = (TextView) findViewById(R.id.test4);
-        test1.setText(wordList.get(0).getWord());
-        test2.setText(wordList.get(1).getWord());
-        test3.setText(wordList.get(2).getWord());
-        test4.setText(wordList.get(3).getWord());
-        bankTexts = new ArrayList<TextView>();
-        bankTexts.add(test1);
-        bankTexts.add(test2);
-        bankTexts.add(test3);
-        bankTexts.add(test4);
+        grid = (GridView) findViewById(R.id.regGame);
+        bankGrid = (GridView) findViewById(R.id.regGameBank);
+
+        //add the words to String arraylist bankList
+        for (Word a: bank.getBank()) {
+            bankList.add(a.getWord());
+        }
+        //Create the word bank grid
+        GridAdapter bankAdapter = new GridAdapter(this, bankList);
+        bankGrid.setAdapter(bankAdapter);
+
 
         //Add all of the letters in str to the grid
+        String str = bank.getFormat();
         for (int i = 0; i < str.length(); i++)
         {
             list.add(str.substring(i,i+1));
         }
-
         //Grid adapter, add the list to the grid
         GridAdapter adapter = new GridAdapter(this, list);
         grid.setAdapter(adapter);
@@ -271,7 +276,8 @@ public class RegPlay extends AppCompatActivity {
                             scoreText.setText("Score: " + Integer.toString(scoreSum));
 
                             //Cross out word from wordbank
-                            for(TextView w: bankTexts) {
+                            for (int i = 0; i < bankGrid.getChildCount(); i++) {
+                                TextView w = (TextView) bankGrid.getChildAt(i).findViewById(R.id.let);
                                 if (w.getText().equals(word.getWord())) {
                                     w.setPaintFlags(w.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                                 }
