@@ -54,7 +54,7 @@ public class RegPlay extends AppCompatActivity {
                 startActivity(new Intent(RegPlay.this, RegLevel.class));
             }
         });
-        
+
         //This will be used to push score to result screen
         Intent intent = new Intent(this, Result.class);
         Bundle bundle = getIntent().getExtras();

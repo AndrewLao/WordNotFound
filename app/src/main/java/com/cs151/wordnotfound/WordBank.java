@@ -63,7 +63,6 @@ public class WordBank extends AppCompatActivity implements Serializable {
                 str = is.readLine();
                 format = str;					//line 3
 
-
                 wordBankList.add(new WordBank(level, bank, format));
             }
 
