@@ -73,9 +73,6 @@ public class Settings extends AppCompatActivity implements View.OnClickListener{
         }
     }
 
-
-
-
     public void openMain(){
         startActivity(new Intent(Settings.this, MainActivity.class));
     }
