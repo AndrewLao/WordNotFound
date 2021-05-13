@@ -298,6 +298,8 @@ public class RegPlay extends AppCompatActivity {
                         Bundle bundle = new Bundle();
                         bundle.putString("scoreSum", Integer.toString(scoreSum));
                         bundle.putString("time", simpleChronometer.getText().toString());
+                        bundle.putBoolean("isRegPlay", true);
+                        bundle.putInt("level", level);
                         intent.putExtras(bundle);
                         startActivity(intent);
 

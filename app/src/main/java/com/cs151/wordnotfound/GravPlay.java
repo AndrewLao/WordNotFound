@@ -16,19 +16,23 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class GravPlay extends AppCompatActivity {
     ArrayList<TextView> foundLetterViewHolder = new ArrayList<TextView>();
     ArrayList<TextView> letterViewHolder = new ArrayList<TextView>();
+    ArrayList<String> bankList = new ArrayList<String>();
     ArrayList<String> list = new ArrayList<String>();
     ArrayList<TextView> bankTexts;
     ArrayList<Word> wordList;
     boolean firstLetterSelected = false;
-    int nextPos;
+    int nextPos, level;
     int scoreSum = 0;
-    GridView grid;
-    WordBank bank;
+    GridView grid, bankGrid;
+    WordBank bank, wordBankList;
     String ans = "";
 
     @SuppressLint("ClickableViewAccessibility")
@@ -37,8 +41,6 @@ public class GravPlay extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grav_play);
 
-        //This will be used to push score to result screen
-        Intent intent = new Intent(this, Result.class);
         //Color chooser
         TypedValue typedValue = new TypedValue();
         getTheme().resolveAttribute(android.R.attr.colorBackground, typedValue, true);
@@ -48,7 +50,6 @@ public class GravPlay extends AppCompatActivity {
         Chronometer simpleChronometer = (Chronometer) findViewById(R.id.simpleChronometer); // initiate a chronometer
         simpleChronometer.start();
 
-        //Back to Level Select Buton
         ImageButton gravPlayLevel = (ImageButton) findViewById(R.id.gravPlayToGravLevel);
         gravPlayLevel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -56,46 +57,54 @@ public class GravPlay extends AppCompatActivity {
             }
         });
 
-        //Retry button
+        //This will be used to push score to result screen
+        Intent intent = new Intent(this, Result.class);
+        Bundle bundle = getIntent().getExtras();
+        level = bundle.getInt("level");
+
+        Intent restart = new Intent(this, RegPlay.class);
         ImageButton gravPlayRetry = (ImageButton) findViewById(R.id.gravPlayToRetry);
         gravPlayRetry.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(GravPlay.this, GravPlay.class));
+                Bundle bundle = new Bundle();
+                bundle.putInt("level", level);
+                restart.putExtras(bundle);
+                startActivity(restart);
             }
         });
 
-        grid = (GridView) findViewById(R.id.gravGame);
-        //Create grid of letters here
-        wordList = new ArrayList<Word>();
-        //For now, manually add words
-        wordList.add(new Word("cloud"));
-        wordList.add(new Word("example"));
-        wordList.add(new Word("gold"));
-        wordList.add(new Word("take"));
-        wordList.add(new Word("word"));
-        String str = "                 u      md  clogpleexawoldtakeord";
-        bank = new WordBank(1, wordList, str);
-        //Manually set the wordbank textviews and add them to bankTexts
-        TextView test1 = (TextView) findViewById(R.id.test1);
-        TextView test2 = (TextView) findViewById(R.id.test2);
-        TextView test3 = (TextView) findViewById(R.id.test3);
-        TextView test4 = (TextView) findViewById(R.id.test4);
-        test1.setText(wordList.get(0).getWord());
-        test2.setText(wordList.get(1).getWord());
-        test3.setText(wordList.get(2).getWord());
-        test4.setText(wordList.get(3).getWord());
-        bankTexts = new ArrayList<TextView>();
-        bankTexts.add(test1);
-        bankTexts.add(test2);
-        bankTexts.add(test3);
-        bankTexts.add(test4);
-
-        //Add all of the letters in str to the grid
-        for (int i = 0; i < str.length(); i++)
-        {
-                list.add(str.substring(i, i + 1));
+        //Create the wordbank here
+        try {
+            InputStream raw = getResources().openRawResource(R.raw.grav_level_select);
+            BufferedReader is = new BufferedReader(new InputStreamReader(raw, "UTF8"));
+            wordBankList = new WordBank(is);
+            raw.close();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
 
+        //Get the level of the game here
+        bank = wordBankList.getLevel(level);
+
+        //Create grid of letters here
+        grid = (GridView) findViewById(R.id.gravGame);
+        bankGrid = (GridView) findViewById(R.id.gravGameBank);
+
+        //add the words to String arraylist bankList
+        for (Word a: bank.getBank()) {
+            bankList.add(a.getWord());
+        }
+        //Create the word bank grid
+        GridAdapter bankAdapter = new GridAdapter(this, bankList);
+        bankGrid.setAdapter(bankAdapter);
+
+
+        //Add all of the letters in str to the grid
+        String str = bank.getFormat();
+        for (int i = 0; i < str.length(); i++)
+        {
+            list.add(str.substring(i,i+1));
+        }
         //Grid adapter, add the list to the grid
         GridAdapter adapter = new GridAdapter(this, list);
         grid.setAdapter(adapter);
@@ -164,7 +173,8 @@ public class GravPlay extends AppCompatActivity {
                             scoreText.setText("Score: " + Integer.toString(scoreSum));
 
                             //Cross out word from wordbank
-                            for (TextView w : bankTexts) {
+                            for (int i = 0; i < bankGrid.getChildCount(); i++) {
+                                TextView w = (TextView) bankGrid.getChildAt(i).findViewById(R.id.let);
                                 if (w.getText().equals(word.getWord())) {
                                     w.setPaintFlags(w.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                                 }
@@ -180,6 +190,8 @@ public class GravPlay extends AppCompatActivity {
                         Bundle bundle = new Bundle();
                         bundle.putString("scoreSum", Integer.toString(scoreSum));
                         bundle.putString("time", simpleChronometer.getText().toString());
+                        bundle.putBoolean("isRegPlay", false);
+                        bundle.putInt("level", level);
                         intent.putExtras(bundle);
                         startActivity(intent);
 
