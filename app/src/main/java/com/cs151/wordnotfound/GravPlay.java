@@ -124,7 +124,7 @@ public class GravPlay extends AppCompatActivity {
                 if (action == MotionEvent.ACTION_MOVE) {
                     if(pos != -1) {//if it's a square with a character, not a space between them
                         a = (TextView) grid.getChildAt(pos).findViewById(R.id.let);             //set a (textview) as the letter on the current position
-                        if (!(a.getText().equals(" ")) && !firstLetterSelected) {
+                        if (!(a.getText().equals(" ")) && !firstLetterSelected && !foundLetterViewHolder.contains(a)) {
                             firstLetterSelected = true;//our first letter has been selected
                             nextPos = (pos % 7) + 1;                                        //set the next position to be one position to the right of our current position
                             a.setBackgroundColor(Color.parseColor("#696969"));   //set the background of our current coordinate to gray
