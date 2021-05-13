@@ -72,15 +72,15 @@ public class Settings extends AppCompatActivity implements View.OnClickListener{
             }
         });
 
-        sharedPreferences = getSharedPreferences(MUSIC_MODE, MODE_PRIVATE);
-        editor = getSharedPreferences(MUSIC_MODE, MODE_PRIVATE).edit();
-        musicSwitchStatus = sharedPreferences.getBoolean(MUSIC_SWITCH_STATUS, true); // light mode default
-        musicStatus = sharedPreferences.getBoolean(MUSIC, true);
-        MusicSwitch.setChecked(musicSwitchStatus);
-
-        if(musicStatus){
-
-        }
+//        sharedPreferences = getSharedPreferences(MUSIC_MODE, MODE_PRIVATE);
+//        editor = getSharedPreferences(MUSIC_MODE, MODE_PRIVATE).edit();
+//        musicSwitchStatus = sharedPreferences.getBoolean(MUSIC_SWITCH_STATUS, true); // light mode default
+//        musicStatus = sharedPreferences.getBoolean(MUSIC, true);
+//        MusicSwitch.setChecked(musicSwitchStatus);
+//
+//        if(musicStatus){
+//
+//        }
 
     }
 

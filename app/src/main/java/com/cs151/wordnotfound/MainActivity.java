@@ -48,9 +48,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.BLACK);
         }
-        MediaPlayer player = MediaPlayer.create(MainActivity.this, R.raw.background_music);
-        player.start();
-        player.setLooping(true);
+//        MediaPlayer player = MediaPlayer.create(MainActivity.this, R.raw.background_music);
+//        player.start();
+//        player.setLooping(true);
 
         Button regButton = (Button) findViewById(R.id.mainRegularLevel);
         regButton.setOnClickListener(this);
