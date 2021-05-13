@@ -10,11 +10,15 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 public class GravLevel extends AppCompatActivity {
-
+    int level;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grav_level);
+
+        //This will be used to push the level to play
+        Intent intent = new Intent(this, GravPlay.class);
+        Bundle bundle = new Bundle();
 
         ImageButton gravButton = (ImageButton) findViewById(R.id.gravHome);
         gravButton.setOnClickListener(new View.OnClickListener() {
@@ -26,7 +30,9 @@ public class GravLevel extends AppCompatActivity {
         Button gravLevelOne = (Button) findViewById(R.id.gravSelect1);
         gravLevelOne.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(GravLevel.this, GravPlay.class));
+                bundle.putInt("level", 0);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
     }
