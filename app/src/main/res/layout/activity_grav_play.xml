@@ -15,38 +15,41 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/outline_home_24"
-            android:backgroundTint="#adddff">
+            android:src="@drawable/outline_arrow_back_24"
+            android:backgroundTint="?android:colorBackground">
         </ImageButton>
         <ImageButton
             android:id="@+id/gravPlayToRetry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:src="@drawable/outline_home_24"
-            android:backgroundTint="#adddff">
+            android:src="@drawable/outline_refresh_24"
+            android:backgroundTint="?android:colorBackground">
         </ImageButton>
-        <TextView
+        <Chronometer
+            android:id="@+id/simpleChronometer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Time:HH:MM:SS"
             android:textStyle="bold"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:textSize="24sp"></TextView>
+            android:textSize="24sp"/>
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
+
+
+        <GridView
             android:id="@+id/gravGame"
             android:layout_width="match_parent"
-            android:layout_height="350dp"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="50dp"
-            android:text="play game here"
-            android:textAlignment="center"
-            android:textSize="48sp"></TextView>
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:numColumns="7"
+            android:horizontalSpacing="10dp"
+            android:verticalSpacing="10dp"
+            />
 
         <HorizontalScrollView
             android:id="@+id/gravWordBankScrollContainer"
@@ -99,10 +102,11 @@
         </HorizontalScrollView>
 
         <TextView
+            android:id="@+id/gravPlayScoreText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/gravWordBankScrollContainer"
-            android:text="Score:0"
+            android:text="Score: 0"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:textSize="32sp">
