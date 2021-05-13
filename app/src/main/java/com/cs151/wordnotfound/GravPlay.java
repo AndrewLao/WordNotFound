@@ -62,7 +62,7 @@ public class GravPlay extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         level = bundle.getInt("level");
 
-        Intent restart = new Intent(this, RegPlay.class);
+        Intent restart = new Intent(this, GravPlay.class);
         ImageButton gravPlayRetry = (ImageButton) findViewById(R.id.gravPlayToRetry);
         gravPlayRetry.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
