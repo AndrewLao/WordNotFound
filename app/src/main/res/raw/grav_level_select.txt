@@ -1,3 +1,15 @@
 1
-cloud, example, gold, take, word
-                 u      md  clogpleexawoldtakeord
+cloud, example, sick, take, word
+                 u      md  clospleexawicktakeord
+2
+please, give, student, good, grade, pencil, red
+          cil   ndre peurendstgdadtgoogivepleasee
+3
+level, three, not, too, bad, very, high, fall
+  gf     rh    iay   hetda  vbtoo  nothrlllevelee
+4
+today, weather, hot, sun, beach, ocean
+           n    eah   catc  oeease wbdayhrtohotun
+5
+tree, wood, pot, watch, out, vehicle, hint, eleven, clock
+  ock   leven clntcl eihiou heatchevweeodttrwopot

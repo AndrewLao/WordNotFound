@@ -134,7 +134,7 @@ public class GravPlay extends AppCompatActivity {
 
                             // For every other grid square selected
                         }else{
-                            if(!a.getText().equals(" ") && (pos % 7) == nextPos) {
+                            if(!a.getText().equals(" ") && (pos % 7) == nextPos && !foundLetterViewHolder.contains(a)) {
                                 nextPos = (pos % 7) + 1;
 
                                 // pos at this stage of the program is equal to nextPos

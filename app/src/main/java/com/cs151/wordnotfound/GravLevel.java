@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 
 public class GravLevel extends AppCompatActivity {
     int level;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +32,38 @@ public class GravLevel extends AppCompatActivity {
         gravLevelOne.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 bundle.putInt("level", 0);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+        Button gravLevelTwo = (Button) findViewById(R.id.gravSelect2);
+        gravLevelTwo.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                bundle.putInt("level", 1);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+        Button gravLevelThree = (Button) findViewById(R.id.gravSelect3);
+        gravLevelThree.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                bundle.putInt("level", 2);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+        Button gravLevelFour = (Button) findViewById(R.id.gravSelect4);
+        gravLevelFour.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                bundle.putInt("level", 3);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+        Button gravLevelFive = (Button) findViewById(R.id.gravSelect5);
+        gravLevelFive.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                bundle.putInt("level", 4);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
