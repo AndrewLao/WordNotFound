@@ -9,9 +9,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+/**
+ * Gravitational Wordsearch List
+ */
 public class GravLevel extends AppCompatActivity {
     int level;
 
+    /**
+     * Creates the gravitational wordsearch list
+     * @param savedInstanceState
+     * Standard Android Bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

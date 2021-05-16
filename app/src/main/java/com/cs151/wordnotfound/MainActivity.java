@@ -23,12 +23,20 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * Launch screen of the app
+ */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     SharedPreferences sharedPreferences;
     boolean darkStatus;
     private static String DARK_MODE = "Dark_mode_prefs";
     private static String NIGHT = "night_on";
 
+    /**
+     * Main Activity that starts the application
+     * @param savedInstanceState
+     * Standard Android Bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

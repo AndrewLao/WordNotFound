@@ -9,7 +9,10 @@ import java.io.Reader;
 import java.io.Serializable;
 import java.util.*;
 
-public class WordBank extends AppCompatActivity implements Serializable {
+/**
+ * Handles the reading and management of wordbanks provided by a text file
+ */
+public class WordBank extends AppCompatActivity {
     private ArrayList<Word> bank;
     private int level;
     private String format;
@@ -18,12 +21,26 @@ public class WordBank extends AppCompatActivity implements Serializable {
     private boolean levelSelect;//FALSE FOR REG, TRUE FOR LEVEL
     private ArrayList<WordBank> wordBankList;
 
+    /**
+     * Functional WordBank object that gets the level of the bank that's called after WordBank(BufferedReader b)
+     * @param level
+     * level of the wordbank on file
+     * @param bank
+     * array of all wordbanks
+     * @param format
+     * string of characters that initializes the wordsearch
+     */
     public WordBank(int level, ArrayList<Word> bank, String format) {
         this.level = level;
         this.bank = bank;
         this.format = format;
     }
 
+    /**
+     * Creates a new WordBank from a text file that's non-functional
+     * @param b
+     * Buffered reader that holds the text file
+     */
     public WordBank(BufferedReader b) {
         wordBankList = new ArrayList<>();
 
@@ -77,6 +94,7 @@ public class WordBank extends AppCompatActivity implements Serializable {
     /**
      * method returns WordBank Object based on level chosen
      * @param pLevel
+     * level of the desired wordserach
      * @return Wordbank obj
      */
     public WordBank getLevel(int pLevel) {
@@ -85,7 +103,7 @@ public class WordBank extends AppCompatActivity implements Serializable {
 
     /**
      * gets format of characters for gridview
-     * @return
+     * @return String
      */
     public String getFormat(){
         return format;
@@ -93,7 +111,7 @@ public class WordBank extends AppCompatActivity implements Serializable {
 
     /**
      * returns list of words in the wordbank
-     * @return
+     * @return Arraylist
      */
     public ArrayList<Word> getBank(){
         return bank;
@@ -101,7 +119,7 @@ public class WordBank extends AppCompatActivity implements Serializable {
 
     /**
      * returns all levels/wordBanks
-     * @return
+     * @return ArrayList
      */
     public ArrayList<WordBank> getWordBank(){
         return wordBankList;
@@ -109,7 +127,7 @@ public class WordBank extends AppCompatActivity implements Serializable {
 
     /**
      * toString
-     * @return
+     * @return String
      */
     public String toString() {
         String str = "level = " + level + "\nwordBank = ";

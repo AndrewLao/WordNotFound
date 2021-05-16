@@ -21,6 +21,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+/**
+ * Gravitational Wordsearch functionality
+ */
 public class GravPlay extends AppCompatActivity {
     ArrayList<TextView> foundLetterViewHolder = new ArrayList<TextView>();
     ArrayList<TextView> letterViewHolder = new ArrayList<TextView>();
@@ -35,6 +38,11 @@ public class GravPlay extends AppCompatActivity {
     WordBank bank, wordBankList;
     String ans = "";
 
+    /**
+     * Creates a gravitational wordsearch instance
+     * @param savedInstanceState
+     * Standard Android Bundle
+     */
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {

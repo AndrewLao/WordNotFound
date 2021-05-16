@@ -20,6 +20,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+/**
+ * Regular Wordsearch functionality
+ */
 public class RegPlay extends AppCompatActivity {
     ArrayList<TextView> foundLetterViewHolder = new ArrayList<TextView>();
     ArrayList<TextView> letterViewHolder = new ArrayList<TextView>();
@@ -33,6 +36,11 @@ public class RegPlay extends AppCompatActivity {
     WordBank bank, wordBankList;
     String ans = "";
 
+    /**
+     * Creates and manages a regular wordsearch instance
+     * @param savedInstanceState
+     * Standard Android Bundle
+     */
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {

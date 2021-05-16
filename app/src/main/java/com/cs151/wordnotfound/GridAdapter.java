@@ -12,16 +12,28 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
+/**
+ * Handles the position of letters in the grid
+ */
 public class GridAdapter extends ArrayAdapter<String> {
     public GridAdapter(@NonNull Context context, ArrayList<String> wordArrayList) {
         super(context, 0, wordArrayList);
     }
 
+    /**
+     *
+     * Sets the text of the textview for each letter in GridView
+     *
+     * @param position
+     * position of letter
+     * @param convertView
+     * view of instance
+     * @param parent
+     * parent views
+     * @return View
+     */
     @NonNull
     @Override
-    /**
-     * Sets the text of the textview for each letter in GridView
-     */
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View listitemView = convertView;
         if (listitemView == null) {

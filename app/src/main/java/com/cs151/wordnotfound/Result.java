@@ -9,9 +9,17 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+/**
+ * Results Screen
+ */
 public class Result extends AppCompatActivity {
     Boolean isRegPlay;
 
+    /**
+     * Starts the Result Activity
+     * @param savedInstanceState
+     * Standard Android Bundle for onCreate
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -9,9 +9,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+/**
+ * Regular Wordsearch List
+ */
 public class RegLevel extends AppCompatActivity {
     int level;
 
+    /**
+     * Creates the regular wordsearch list
+     * @param savedInstanceState
+     * Standard Android Bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

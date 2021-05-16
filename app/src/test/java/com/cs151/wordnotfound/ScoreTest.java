@@ -1,13 +1,17 @@
-package com.cs151.wordnotfound.test;
+package com.cs151.wordnotfound;
 
-import com.cs151.wordnotfound.Score;
 
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * Tests the score class
+ */
 public class ScoreTest {
-
+    /**
+     * Method to test the score class
+     */
     @Test
     public void scoreTest(){
         Score s = new Score();

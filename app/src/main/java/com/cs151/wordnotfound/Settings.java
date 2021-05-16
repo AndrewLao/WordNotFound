@@ -11,6 +11,9 @@ import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.Switch;
 
+/**
+ * Settings screen
+ */
 public class Settings extends AppCompatActivity implements View.OnClickListener{
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -28,6 +31,11 @@ public class Settings extends AppCompatActivity implements View.OnClickListener{
     boolean musicSwitchStatus;
     boolean musicStatus;
 
+    /**
+     * Initializes Settings
+     * @param savedInstanceState
+     * Standard Android Bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +92,11 @@ public class Settings extends AppCompatActivity implements View.OnClickListener{
 
     }
 
+    /**
+     * Overridden method to switch activities
+     * @param v
+     * Current view instance
+     */
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -93,6 +106,9 @@ public class Settings extends AppCompatActivity implements View.OnClickListener{
         }
     }
 
+    /**
+     * Method to start MainActitiy
+     */
     public void openMain(){
         startActivity(new Intent(Settings.this, MainActivity.class));
     }
