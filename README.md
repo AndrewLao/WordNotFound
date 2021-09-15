@@ -1,6 +1,6 @@
 # WordNotFound
 
-"WordNotFound" is a crossword search Android application that consists of two gamemodes that features two games the user can play: a word search and a gravitational word search. 
+"WordNotFound" is a wordsearch Android application that consists of two gamemodes that features two games the user can play: a word search and a gravitational word search. 
 
 The regular word search is the standard game where the user searches for words scattered throughout a field of letters. The words that the user searches for will be given in a word bank. The words will be made up of letters in a straight, adjacent line.
 
